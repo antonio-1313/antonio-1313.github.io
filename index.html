@@ -847,7 +847,7 @@
           <div class="metric-label">Cloud Platforms Secured</div>
         </div>
         <div class="metric">
-          <div class="metric-val orange">4</div>
+          <div class="metric-val orange">7</div>
           <div class="metric-label">Security Projects Shipped</div>
         </div>
         <div class="metric">
@@ -1015,73 +1015,53 @@
         </div>
         <div class="case-body">
           <div>
-            <div class="case-section-title">Problem & Approach</div>
+            <div class="case-section-title">Challenge</div>
             <div class="case-text">
-              Walmart's cloud-native infrastructure spans Kubernetes clusters across Azure and GCP, running hundreds of workloads for high-traffic retail operations. The challenge was applying consistent security controls without disrupting development velocity.
+              Developers were manually managing secret refresh logic in config files and sidecars — inconsistent, error-prone, and a persistent security risk across Tier 0/1 Kubernetes services on Azure AKS and GCP GKE.
             </div>
-            <div class="case-text">
-              I focused on three threat surfaces: secrets exposure in cluster config, overly permissive RBAC assignments, and lateral movement risk due to flat network topology.
-            </div>
-            <div class="case-section-title" style="margin-top:24px;">Technical Implementation</div>
+            <div class="case-section-title" style="margin-top:24px;">What I Did</div>
             <ul class="case-list">
-              <li>Deployed Sealed Secrets and integrated with HashiCorp Vault for dynamic secret injection, eliminating plaintext secrets from Kubernetes manifests</li>
-              <li>Implemented OPA/Gatekeeper policies to enforce pod security standards — restricting privileged containers, host path mounts, and root execution</li>
-              <li>Designed namespace-scoped RBAC models with least-privilege service accounts, replacing cluster-admin bindings used by legacy workloads</li>
-              <li>Enforced Kubernetes NetworkPolicies to segment east-west traffic between namespaces and restrict egress to known endpoints</li>
-              <li>Integrated runtime security tooling to detect anomalous syscalls and container escapes in production clusters</li>
+              <li>Installed and maintained Vault Auth Controller — standardized secret auth and dynamic retrieval at runtime, eliminating manual refresh logic and pod restarts for credential updates</li>
+              <li>Deployed Sealed Secrets to remove all plaintext credentials from Kubernetes manifests</li>
+              <li>Implemented OPA/Gatekeeper admission policies (no privileged containers, host path mounts, or root execution) and namespace-scoped RBAC to replace cluster-admin bindings</li>
+              <li>Enforced NetworkPolicies for east-west traffic segmentation; collaborated with platform and security teams to drive adoption across Tier 0/1 services</li>
             </ul>
-            <div class="arch-diagram" style="margin-top:24px;">
-<span class="cyan">┌──────────────────────────────────────────┐</span>
-<span class="cyan">│</span>  <span class="green">Kubernetes Cluster Security Layers</span>      <span class="cyan">│</span>
-<span class="cyan">├──────────────────────────────────────────┤</span>
-<span class="cyan">│</span>  <span class="orange">[Control Plane]</span>  RBAC · OPA Gatekeeper  <span class="cyan">│</span>
-<span class="cyan">│</span>       ↓                                  <span class="cyan">│</span>
-<span class="cyan">│</span>  <span class="orange">[Secrets Layer]</span>  Vault · Sealed Secrets  <span class="cyan">│</span>
-<span class="cyan">│</span>       ↓                                  <span class="cyan">│</span>
-<span class="cyan">│</span>  <span class="orange">[Network]</span>  NetworkPolicies · Namespaces  <span class="cyan">│</span>
-<span class="cyan">│</span>       ↓                                  <span class="cyan">│</span>
-<span class="cyan">│</span>  <span class="orange">[Runtime]</span>  Syscall monitoring · Alerts   <span class="cyan">│</span>
-<span class="cyan">└──────────────────────────────────────────┘</span>
-  Azure AKS <span class="dim">────────────────</span> GCP GKE
-            </div>
           </div>
           <div>
             <div class="case-section-title">Key Outcomes</div>
             <div class="impact-grid">
               <div class="impact-box">
-                <span class="impact-num">100%</span>
-                <div class="impact-desc">Secrets removed from manifests</div>
+                <span class="impact-num">↓40%</span>
+                <div class="impact-desc">Secrets-related incidents</div>
               </div>
               <div class="impact-box">
-                <span class="impact-num">2</span>
-                <div class="impact-desc">Cloud platforms hardened</div>
-              </div>
-              <div class="impact-box">
-                <span class="impact-num">↓</span>
-                <div class="impact-desc">Lateral movement risk</div>
+                <span class="impact-num">1000+</span>
+                <div class="impact-desc">Services adopted Auth Controller</div>
               </div>
               <div class="impact-box">
                 <span class="impact-num">0</span>
-                <div class="impact-desc">Privileged container exceptions</div>
+                <div class="impact-desc">Plaintext secrets in manifests</div>
+              </div>
+              <div class="impact-box">
+                <span class="impact-num">T0/T1</span>
+                <div class="impact-desc">Coverage across critical service tiers</div>
               </div>
             </div>
             <div class="case-section-title" style="margin-top:28px;">Skills Demonstrated</div>
             <ul class="case-list">
-              <li>Container security architecture at enterprise scale</li>
+              <li>Secrets lifecycle management and secure-by-default platform design</li>
               <li>Policy-as-code with OPA/Gatekeeper for admission control</li>
-              <li>Secrets lifecycle management with Vault integration</li>
-              <li>Multi-cloud security operations (AKS + GKE parity)</li>
-              <li>Cross-team coordination with platform and app teams</li>
+              <li>Multi-cloud Kubernetes security (AKS + GKE)</li>
+              <li>Cross-team coordination with platform and security teams</li>
             </ul>
             <div class="case-section-title" style="margin-top:28px;">Relevant Tools</div>
             <div class="skill-tags" style="margin-top:8px;">
-              <span class="tag cyan">Kubernetes</span>
+              <span class="tag">Kubernetes</span>
               <span class="tag">HashiCorp Vault</span>
-              <span class="tag">OPA</span>
+              <span class="tag">OPA / Gatekeeper</span>
               <span class="tag">Azure AKS</span>
               <span class="tag">GCP GKE</span>
               <span class="tag">Sealed Secrets</span>
-              <span class="tag">Falco</span>
             </div>
           </div>
         </div>
@@ -1103,17 +1083,16 @@
         </div>
         <div class="case-body">
           <div>
-            <div class="case-section-title">Problem & Approach</div>
+            <div class="case-section-title">Challenge</div>
             <div class="case-text">
-              Manual IAM audits were slow, inconsistent, and created a compliance gap — weeks could pass before over-permissioned service accounts were caught. The goal was to shift from periodic audits to continuous enforcement.
+              Manual IAM audits were slow and periodic — weeks could pass before over-permissioned service accounts were caught, creating a persistent compliance gap across cloud environments.
             </div>
-            <div class="case-section-title" style="margin-top:24px;">Technical Implementation</div>
+            <div class="case-section-title" style="margin-top:24px;">What I Did</div>
             <ul class="case-list">
-              <li>Built a policy evaluation pipeline that continuously compares live IAM state against defined baseline policies using infrastructure APIs</li>
-              <li>Defined compliance rules in code (policy-as-code), covering service account scopes, unused permissions, cross-project access, and stale role bindings</li>
-              <li>Integrated drift alerts into existing SIEM tooling so violations surfaced in SOC workflows without adding new dashboards</li>
-              <li>Built remediation playbooks triggered by specific violation types, enabling semi-automated response for common misconfigurations</li>
-              <li>Produced compliance reports mapped to CIS Benchmarks for cloud IAM, supporting audit cycles with auditable evidence</li>
+              <li>Built a continuous policy evaluation pipeline that compares live IAM state against defined baselines using cloud infrastructure APIs</li>
+              <li>Defined compliance rules as code — covering service account scopes, unused permissions, cross-project access, and stale role bindings</li>
+              <li>Integrated drift alerts into existing SIEM so violations surfaced directly in SOC workflows</li>
+              <li>Produced CIS Benchmark-aligned compliance reports to support audit cycles with auditable evidence</li>
             </ul>
           </div>
           <div>
@@ -1133,7 +1112,7 @@
               </div>
               <div class="impact-box">
                 <span class="impact-num">∞</span>
-                <div class="impact-desc">Continuous vs periodic</div>
+                <div class="impact-desc">Continuous vs manual</div>
               </div>
             </div>
             <div class="case-section-title" style="margin-top:28px;">Skills Demonstrated</div>
@@ -1146,9 +1125,9 @@
             <div class="case-section-title" style="margin-top:28px;">Relevant Tools</div>
             <div class="skill-tags" style="margin-top:8px;">
               <span class="tag">Azure AD</span>
-              <span class="tag cyan">GCP IAM</span>
+              <span class="tag">GCP IAM</span>
               <span class="tag">Python</span>
-              <span class="tag green">SIEM</span>
+              <span class="tag">SIEM</span>
               <span class="tag">Terraform</span>
               <span class="tag">CIS Benchmarks</span>
             </div>
@@ -1172,17 +1151,16 @@
         </div>
         <div class="case-body">
           <div>
-            <div class="case-section-title">Problem & Approach</div>
+            <div class="case-section-title">Challenge</div>
             <div class="case-text">
-              Container images were being deployed without systematic vulnerability checks. Security teams had no visibility into what CVEs were running in production, and developers had no feedback loop to catch issues early.
+              Container images were deployed without systematic vulnerability checks — no visibility into production CVEs and no early feedback loop for developers.
             </div>
-            <div class="case-section-title" style="margin-top:24px;">Technical Implementation</div>
+            <div class="case-section-title" style="margin-top:24px;">What I Did</div>
             <ul class="case-list">
-              <li>Integrated Trivy and Grype into CI/CD pipelines as a mandatory gate — builds fail on critical/high CVEs with no active exceptions</li>
-              <li>Defined severity thresholds per environment: strict in prod pipelines, advisory in dev with team-visible scan reports</li>
-              <li>Built a CVE triage workflow so teams receive actionable scan output (package, version, fix version) rather than raw scanner dumps</li>
-              <li>Implemented base image governance — maintained an approved registry of hardened base images and flagged unapproved base image usage in PRs</li>
-              <li>Integrated findings into the vulnerability management backlog, tracked by service owner with SLA targets for critical/high CVEs</li>
+              <li>Integrated Snyk as a mandatory CI/CD gate — builds fail on critical/high CVEs, with environment-specific thresholds (strict in prod, advisory in dev)</li>
+              <li>Built a CVE triage workflow delivering actionable output (package, version, fix version) instead of raw scanner dumps</li>
+              <li>Implemented base image governance with an approved registry of hardened images, flagging unapproved usage in PRs</li>
+              <li>Integrated findings into the vulnerability management backlog, tracked by service owner with SLA targets</li>
             </ul>
           </div>
           <div>
@@ -1214,8 +1192,6 @@
             </ul>
             <div class="case-section-title" style="margin-top:28px;">Relevant Tools</div>
             <div class="skill-tags" style="margin-top:8px;">
-              <span class="tag cyan">Trivy</span>
-              <span class="tag cyan">Grype</span>
               <span class="tag">Snyk</span>
               <span class="tag">GitHub Actions</span>
               <span class="tag">Docker</span>
@@ -1241,19 +1217,16 @@
         </div>
         <div class="case-body">
           <div>
-            <div class="case-section-title">Problem & Approach</div>
+            <div class="case-section-title">Challenge</div>
             <div class="case-text">
-              Security incidents often took longer to resolve because engineers lacked clear playbooks. Separately, security requirements were difficult for development teams to operationalize, leading to repeated misconfigurations.
+              Incidents took longer to resolve because engineers lacked clear playbooks, and repeated misconfigurations showed that security requirements weren't translating into developer practice.
             </div>
-            <div class="case-text">
-              I designed a two-part program: operational runbooks for known incident types (credential exposure, misconfigured IAM, container escapes), and a training curriculum that met engineers in their existing workflow context.
-            </div>
-            <div class="case-section-title" style="margin-top:24px;">Technical Implementation</div>
+            <div class="case-section-title" style="margin-top:24px;">What I Did</div>
             <ul class="case-list">
-              <li>Authored incident response runbooks for cloud-specific threat types: credential exposure, IAM privilege escalation, compromised service accounts, and misconfigured storage</li>
-              <li>Developed training modules covering Kubernetes security fundamentals, secrets hygiene, and container hardening — tied to real examples from the codebase</li>
-              <li>Created secure-by-default Helm chart templates and Terraform modules, reducing the surface area for security misconfigurations at the source</li>
-              <li>Partnered with SOC to align runbook steps with their detection tooling — ensuring engineer actions don't interfere with forensic evidence collection</li>
+              <li>Authored IR runbooks for cloud-specific threats — credential exposure, IAM privilege escalation, compromised service accounts, and misconfigured storage</li>
+              <li>Built training modules tied to real codebase examples covering Kubernetes security, secrets hygiene, and container hardening</li>
+              <li>Created secure-by-default Helm and Terraform templates to prevent misconfigurations at the source</li>
+              <li>Partnered with SOC to align runbook steps with detection tooling, ensuring engineer actions don't interfere with forensic evidence collection</li>
             </ul>
           </div>
           <div>
@@ -1285,12 +1258,215 @@
             </ul>
             <div class="case-section-title" style="margin-top:28px;">Relevant Tools</div>
             <div class="skill-tags" style="margin-top:8px;">
-              <span class="tag green">Confluence</span>
+              <span class="tag">Confluence</span>
               <span class="tag">Splunk</span>
               <span class="tag">Helm</span>
               <span class="tag">Terraform</span>
               <span class="tag">SIEM</span>
               <span class="tag">SOC Tooling</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- CASE 5 -->
+      <div class="case-card" id="case5">
+        <div class="case-header" onclick="toggleCase('case5')">
+          <div>
+            <div class="case-meta">
+              <span class="case-num">05</span>
+              <span class="case-badge cyan">Automation</span>
+              <span class="case-badge">CVE Management</span>
+            </div>
+            <div class="case-title">MCP-Compliant Vulnerability Server</div>
+            <div class="case-summary">Built and deployed an MCP-compliant server to automate CVE lookups and component risk queries — cutting manual security analysis time by 40% and accelerating remediation timelines.</div>
+          </div>
+          <div class="case-toggle">+</div>
+        </div>
+        <div class="case-body">
+          <div>
+            <div class="case-section-title">Challenge</div>
+            <div class="case-text">
+              Manual vulnerability triage in CI/CD wasn't scaling — findings were noisy, enforcement was inconsistent, and there was no standard model tied to actual risk level.
+            </div>
+            <div class="case-section-title" style="margin-top:24px;">What I Did</div>
+            <ul class="case-list">
+              <li>Built an MCP-compliant service to automate CVE queries and component risk scoring, integrated with SonarQube for early, consistent SDLC findings</li>
+              <li>Collaborated with DevOps and security teams to define risk-based enforcement: warnings for low-risk, code-gating for medium/severe — intentional, not blanket blocking</li>
+              <li>Aligned service output with Walmart's MCP compliance framework, making findings auditable and standards-traceable</li>
+            </ul>
+          </div>
+          <div>
+            <div class="case-section-title">Key Outcomes</div>
+            <div class="impact-grid">
+              <div class="impact-box">
+                <span class="impact-num">↓40%</span>
+                <div class="impact-desc">Code gating tickets reduced</div>
+              </div>
+              <div class="impact-box">
+                <span class="impact-num">Shift↑</span>
+                <div class="impact-desc">Vulns caught earlier in SDLC</div>
+              </div>
+              <div class="impact-box">
+                <span class="impact-num">↑ DX</span>
+                <div class="impact-desc">Developer velocity maintained</div>
+              </div>
+              <div class="impact-box">
+                <span class="impact-num">MCP</span>
+                <div class="impact-desc">Compliance framework aligned</div>
+              </div>
+            </div>
+            <div class="case-section-title" style="margin-top:28px;">Skills Demonstrated</div>
+            <ul class="case-list">
+              <li>Risk-based security enforcement design (intentional, not blanket)</li>
+              <li>Cross-team collaboration (DevOps + security) to define policy</li>
+              <li>CI/CD pipeline security integration</li>
+              <li>MCP compliance framework alignment</li>
+            </ul>
+            <div class="case-section-title" style="margin-top:28px;">Relevant Tools</div>
+            <div class="skill-tags" style="margin-top:8px;">
+              <span class="tag">SonarQube</span>
+              <span class="tag">MCP</span>
+              <span class="tag">Python</span>
+              <span class="tag">CI/CD</span>
+              <span class="tag">CVE Automation</span>
+              <span class="tag">GitHub Actions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 6 -->
+      <div class="case-card" id="case6">
+        <div class="case-header" onclick="toggleCase('case6')">
+          <div>
+            <div class="case-meta">
+              <span class="case-num">06</span>
+              <span class="case-badge green">Visibility</span>
+              <span class="case-badge">Vuln Management</span>
+            </div>
+            <div class="case-title">Vulnerability Status Tracker Dashboard</div>
+            <div class="case-summary">Designed and built an internal dashboard giving teams full visibility into open CVEs, remediation progress, SLA adherence, and ownership — enabling proactive prioritization across Walmart's production clusters.</div>
+          </div>
+          <div class="case-toggle">+</div>
+        </div>
+        <div class="case-body">
+          <div>
+            <div class="case-section-title">Challenge</div>
+            <div class="case-text">
+              Vulnerability remediation across the WCNP org was fragmented. CVEs existed but ownership, SLA status, and prioritization weren't clearly visible — teams couldn't easily answer "what needs to be fixed, by whom, by when."
+            </div>
+            <div class="case-section-title" style="margin-top:24px;">What I Did</div>
+            <ul class="case-list">
+              <li>Designed and owned the full dashboard — integrated with Walmart's internal vulnerability store via secure APIs, with credentials managed through Akeyless</li>
+              <li>Built backend filtering by service ownership so developers, platform admins, and leadership each see relevant risk without noise</li>
+              <li>Implemented a cron-based ingestion pipeline to normalize CVE data into a database, keeping data fresh without heavy real-time API load</li>
+              <li>Surfaced severity, affected components, remediation guidance, ownership, and SLA deadlines in a unified view — directly influencing prioritization decisions</li>
+            </ul>
+          </div>
+          <div>
+            <div class="case-section-title">Key Outcomes</div>
+            <div class="impact-grid">
+              <div class="impact-box">
+                <span class="impact-num">↓30%</span>
+                <div class="impact-desc">Faster remediation speed</div>
+              </div>
+              <div class="impact-box">
+                <span class="impact-num">3x</span>
+                <div class="impact-desc">Audiences served (devs, admins, leadership)</div>
+              </div>
+              <div class="impact-box">
+                <span class="impact-num">SLA</span>
+                <div class="impact-desc">Proactive deadline tracking</div>
+              </div>
+              <div class="impact-box">
+                <span class="impact-num">↑</span>
+                <div class="impact-desc">Leadership risk visibility</div>
+              </div>
+            </div>
+            <div class="case-section-title" style="margin-top:28px;">Skills Demonstrated</div>
+            <ul class="case-list">
+              <li>End-to-end ownership of internal security tooling</li>
+              <li>Secure API integration and credential management (Akeyless)</li>
+              <li>Data pipeline design (cron ingestion, normalization, database backing)</li>
+              <li>Multi-stakeholder product thinking across engineering and leadership</li>
+            </ul>
+            <div class="case-section-title" style="margin-top:28px;">Relevant Tools</div>
+            <div class="skill-tags" style="margin-top:8px;">
+              <span class="tag">Akeyless</span>
+              <span class="tag">Python</span>
+              <span class="tag">Internal Vuln APIs</span>
+              <span class="tag">Cron Pipeline</span>
+              <span class="tag">Kubernetes</span>
+              <span class="tag">Dashboard UI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 7 -->
+      <div class="case-card" id="case7">
+        <div class="case-header" onclick="toggleCase('case7')">
+          <div>
+            <div class="case-meta">
+              <span class="case-num">07</span>
+              <span class="case-badge orange">React / Go</span>
+              <span class="case-badge">Incident Response</span>
+            </div>
+            <div class="case-title">Incident Management Dashboard (React + Go + Slack)</div>
+            <div class="case-summary">Led design and development of an internal incident dashboard with Slack integration — providing real-time visibility, escalation paths, and RCA tracking that reduced MTTR for production-impacting events.</div>
+          </div>
+          <div class="case-toggle">+</div>
+        </div>
+        <div class="case-body">
+          <div>
+            <div class="case-section-title">Challenge</div>
+            <div class="case-text">
+              IR was slowed by fragmentation — communication scattered across Slack threads, unclear ownership, and inconsistent RCAs all increased MTTR during production events.
+            </div>
+            <div class="case-section-title" style="margin-top:24px;">What I Did</div>
+            <ul class="case-list">
+              <li>Led design and development of a React + Go incident dashboard — first time owning a full-stack project end-to-end, coordinating design decisions and delivery with the SRE team</li>
+              <li>Built Slack integration for automated incident creation, live status pushes, escalation pings, and RCA summaries to relevant channels</li>
+              <li>Designed escalation path logic so on-call engineers always had clear ownership and next steps during active incidents</li>
+              <li>Built post-incident RCA workflow capturing timeline, contributing factors, and remediation steps</li>
+            </ul>
+          </div>
+          <div>
+            <div class="case-section-title">Key Outcomes</div>
+            <div class="impact-grid">
+              <div class="impact-box">
+                <span class="impact-num">↓10%</span>
+                <div class="impact-desc">MTTR for production incidents</div>
+              </div>
+              <div class="impact-box">
+                <span class="impact-num">RT</span>
+                <div class="impact-desc">Real-time visibility for all stakeholders</div>
+              </div>
+              <div class="impact-box">
+                <span class="impact-num">RCA</span>
+                <div class="impact-desc">Structured post-incident docs</div>
+              </div>
+              <div class="impact-box">
+                <span class="impact-num">SRE</span>
+                <div class="impact-desc">Cross-team delivery with SRE org</div>
+              </div>
+            </div>
+            <div class="case-section-title" style="margin-top:28px;">Skills Demonstrated</div>
+            <ul class="case-list">
+              <li>Full-stack engineering leadership (React + Go) end-to-end</li>
+              <li>Cross-functional delivery with SRE team</li>
+              <li>Incident response workflow and escalation design</li>
+              <li>Slack API integration for real-time operational communication</li>
+            </ul>
+            <div class="case-section-title" style="margin-top:28px;">Relevant Tools</div>
+            <div class="skill-tags" style="margin-top:8px;">
+              <span class="tag">React</span>
+              <span class="tag">Go</span>
+              <span class="tag">Slack API</span>
+              <span class="tag">Incident Management</span>
+              <span class="tag">REST API</span>
             </div>
           </div>
         </div>
