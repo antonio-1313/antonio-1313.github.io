@@ -1619,58 +1619,60 @@
             If you're hiring, want to discuss a project, or just want to talk cloud security — reach out.
           </p>
           <div class="contact-items">
-            <a class="contact-item" href="mailto:your.email@example.com">
+            <a class="contact-item" href="mailto:antoniolopez63@live.com">
               <span class="contact-icon">✉</span>
               <div>
                 <span class="contact-label">Email</span>
-                <span class="contact-val">your.email@example.com</span>
+                <span class="contact-val">antoniolopez63@live.com</span>
               </div>
             </a>
-            <a class="contact-item" href="https://linkedin.com" target="_blank">
+            <a class="contact-item" href="https://www.linkedin.com/in/ant-lopezz/" target="_blank">
               <span class="contact-icon">in</span>
               <div>
                 <span class="contact-label">LinkedIn</span>
-                <span class="contact-val">linkedin.com/in/yourprofile</span>
+                <span class="contact-val">linkedin.com/in/ant-lopezz</span>
               </div>
             </a>
-            <a class="contact-item" href="https://github.com" target="_blank">
+            <a class="contact-item" href="https://github.com/antonio-1313" target="_blank">
               <span class="contact-icon">⌥</span>
               <div>
                 <span class="contact-label">GitHub</span>
-                <span class="contact-val">github.com/yourhandle</span>
+                <span class="contact-val">github.com/antonio-1313</span>
               </div>
             </a>
           </div>
-          <div style="margin-top:32px; padding:20px; background:var(--panel); border:1px solid var(--border);">
+          <div style="margin-top:32px; padding:20px; background:var(--panel); border:1px solid var(--border); min-width:480px;">
             <div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent2); margin-bottom:10px;">● Currently Open To</div>
             <div style="font-size:13px; color:var(--muted); line-height:1.8;">
-              Senior Cloud Security Engineer · DevSecOps Engineer · Platform Security Engineer · Security Engineering roles at Enterprise or high-growth tech companies
+              Senior Cloud Security Engineer · DevSecOps Engineer<br>
+              Platform Security Engineer · SOC Engineer<br>
+              Digital Forensics / Incident Response Engineer<br>
+              SecEngineering roles at Enterprise or high-growth tech companies
             </div>
           </div>
         </div>
         <div>
-          <div class="contact-form">
+          <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p style="display:none;"><input name="bot-field"></p>
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" id="name" placeholder="Your name">
+              <input type="text" id="name" name="name" placeholder="Your name" required>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" placeholder="your@email.com">
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
             </div>
             <div class="form-group">
               <label for="company">Company / Role</label>
-              <input type="text" id="company" placeholder="e.g. Security Engineer at Acme Corp">
+              <input type="text" id="company" name="company" placeholder="e.g. Security Engineer at Acme Corp">
             </div>
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" rows="6" placeholder="What are you working on? What does the role involve?"></textarea>
+              <textarea id="message" name="message" rows="6" placeholder="What are you working on? What does the role involve?"></textarea>
             </div>
-            <button class="btn-primary" onclick="handleContact()" style="width:100%; justify-content:center; border:none;">Send Message →</button>
-            <div id="contact-confirm" style="display:none; font-size:12px; color:var(--accent2); text-align:center; padding:12px; border:1px solid rgba(0,255,136,0.2); background:rgba(0,255,136,0.05);">
-              ✓ Message received. I'll be in touch soon.
-            </div>
-          </div>
+            <button type="submit" class="btn-primary" style="width:100%; justify-content:center; border:none;">Send Message →</button>
+          </form>
         </div>
       </div>
     </div>
