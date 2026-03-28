@@ -1614,18 +1614,18 @@
       <div class="contact-grid">
         <div>
           <p class="contact-intro">
-            I'm open to Senior Cloud Security Engineer and DevSecOps roles at companies building or scaling cloud-native infrastructure. I'm most interested in environments where security is a first-class engineering concern — not a checkbox.
+            I'm open to Security Engineering roles at companies building or scaling cloud-native infrastructure. I'm most interested in environments where security is a first-class engineering concern — not a checkbox.
             <br><br>
-            If you're hiring, want to discuss a project, or just want to talk cloud security — reach out.
+            If you're hiring, want to discuss a project, or just want to talk cloud security — please reach out!
           </p>
           <div class="contact-items">
-            <a class="contact-item" href="mailto:antoniolopez63@live.com">
+            <div class="contact-item">
               <span class="contact-icon">✉</span>
               <div>
                 <span class="contact-label">Email</span>
-                <span class="contact-val">antoniolopez63@live.com</span>
+                <span class="contact-val">Use the form to send me a message →</span>
               </div>
-            </a>
+            </div>
             <a class="contact-item" href="https://www.linkedin.com/in/ant-lopezz/" target="_blank">
               <span class="contact-icon">in</span>
               <div>
@@ -1693,8 +1693,19 @@
   function showPage(page) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + page).classList.add('active');
+    window.location.hash = page;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  // Restore page from URL hash on load
+  (function() {
+    const hash = window.location.hash.replace('#', '');
+    const valid = ['home', 'work', 'about', 'contact'];
+    if (hash && valid.includes(hash)) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + hash).classList.add('active');
+    }
+  })();
 
   // Case study accordion
   function toggleCase(id) {
