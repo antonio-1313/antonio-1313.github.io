@@ -843,7 +843,7 @@
           <div class="metric-label">Years in DevSecOps</div>
         </div>
         <div class="metric">
-          <div class="metric-val green">2</div>
+          <div class="metric-val green">3</div>
           <div class="metric-label">Cloud Platforms Secured</div>
         </div>
         <div class="metric">
@@ -872,8 +872,8 @@
           <div class="skill-icon">☸</div>
           <div class="skill-title">Container & Orchestration</div>
           <div class="skill-tags">
-            <span class="tag cyan">Kubernetes</span>
-            <span class="tag cyan">Docker</span>
+            <span class="tag">Kubernetes</span>
+            <span class="tag">Docker</span>
             <span class="tag">Helm</span>
             <span class="tag">Pod Security</span>
             <span class="tag">OPA/Gatekeeper</span>
@@ -884,8 +884,9 @@
           <div class="skill-icon">☁</div>
           <div class="skill-title">Cloud Platforms</div>
           <div class="skill-tags">
-            <span class="tag green">Azure</span>
-            <span class="tag green">GCP</span>
+            <span class="tag">Azure</span>
+            <span class="tag">GCP</span>
+            <span class="tag">AWS</span>
             <span class="tag">IAM</span>
             <span class="tag">Azure AD</span>
             <span class="tag">Cloud Armor</span>
@@ -897,7 +898,7 @@
           <div class="skill-title">Secrets & Identity</div>
           <div class="skill-tags">
             <span class="tag">HashiCorp Vault</span>
-            <span class="tag">Sealed Secrets</span>
+            <span class="tag">Akeyless</span>
             <span class="tag">RBAC</span>
             <span class="tag">Service Accounts</span>
             <span class="tag">Workload Identity</span>
@@ -907,20 +908,21 @@
           <div class="skill-icon">🔍</div>
           <div class="skill-title">Threat Detection & IR</div>
           <div class="skill-tags">
-            <span class="tag cyan">SIEM</span>
+            <span class="tag">SIEM</span>
             <span class="tag">Splunk</span>
+            <span class="tag">IDS/IPS</span>
             <span class="tag">Incident Response</span>
+            <span class="tag">Digital Forensics</span>
             <span class="tag">SOC Collaboration</span>
             <span class="tag">Threat Hunting</span>
+            <span class="tag">Penetration Testing</span>
           </div>
         </div>
         <div class="skill-card green">
           <div class="skill-icon">🛡</div>
           <div class="skill-title">Vulnerability Management</div>
           <div class="skill-tags">
-            <span class="tag green">Trivy</span>
-            <span class="tag green">Snyk</span>
-            <span class="tag">Grype</span>
+            <span class="tag">Snyk</span>
             <span class="tag">CVE Analysis</span>
             <span class="tag">CIS Benchmarks</span>
             <span class="tag">SAST/DAST</span>
@@ -933,7 +935,9 @@
             <span class="tag">Terraform</span>
             <span class="tag">CI/CD Security</span>
             <span class="tag">GitHub Actions</span>
+            <span class="tag">SOAR</span>
             <span class="tag">Python</span>
+            <span class="tag">Go</span>
             <span class="tag">Bash</span>
             <span class="tag">Policy-as-Code</span>
           </div>
@@ -1006,7 +1010,7 @@
             <div class="case-meta">
               <span class="case-num">01</span>
               <span class="case-badge">Kubernetes</span>
-              <span class="case-badge green">Multi-Cloud</span>
+              <span class="case-badge">Multi-Cloud</span>
             </div>
             <div class="case-title">Kubernetes Platform Hardening</div>
             <div class="case-summary">Secured enterprise-grade Kubernetes clusters across Azure AKS and GCP GKE — covering secrets management, access control, network policy, and runtime security at Walmart scale.</div>
@@ -1022,7 +1026,7 @@
             <div class="case-section-title" style="margin-top:24px;">What I Did</div>
             <ul class="case-list">
               <li>Installed and maintained Vault Auth Controller — standardized secret auth and dynamic retrieval at runtime, eliminating manual refresh logic and pod restarts for credential updates</li>
-              <li>Deployed Sealed Secrets to remove all plaintext credentials from Kubernetes manifests</li>
+              <li>Replaced plaintext credential references in Kubernetes manifests with secret store references, enforcing runtime secret retrieval through a centralized secrets manager</li>
               <li>Implemented OPA/Gatekeeper admission policies (no privileged containers, host path mounts, or root execution) and namespace-scoped RBAC to replace cluster-admin bindings</li>
               <li>Enforced NetworkPolicies for east-west traffic segmentation; collaborated with platform and security teams to drive adoption across Tier 0/1 services</li>
             </ul>
@@ -1061,7 +1065,6 @@
               <span class="tag">OPA / Gatekeeper</span>
               <span class="tag">Azure AKS</span>
               <span class="tag">GCP GKE</span>
-              <span class="tag">Sealed Secrets</span>
             </div>
           </div>
         </div>
@@ -1276,7 +1279,7 @@
           <div>
             <div class="case-meta">
               <span class="case-num">05</span>
-              <span class="case-badge cyan">Automation</span>
+              <span class="case-badge orange">Automation</span>
               <span class="case-badge">CVE Management</span>
             </div>
             <div class="case-title">MCP-Compliant Vulnerability Server</div>
@@ -1492,13 +1495,13 @@
 
         <p>At <strong>Walmart Global Tech</strong>, I've spent the past 4+ years working at the intersection of development and security, supporting Kubernetes platforms across Azure and GCP. My focus has been simple: make security practical enough that engineering teams actually adopt it.</p>
 
-        <p>I've worked on everything from vulnerability scanning pipelines for Docker images to IAM compliance automation and secrets management for Kubernetes clusters. Along the way, I've partnered closely with <strong>SOC teams</strong> to reduce credential exposure risks and improve incident response times in production environments.</p>
+        <p>I've worked on everything from vulnerability scanning pipelines for Docker images to IAM compliance automation and secrets management for Kubernetes clusters. Along the way, I've <strong>improved incident response times in production environments</strong> through automation and proactive alerting — and partnered closely with <strong>SOC teams</strong> to reduce credential exposure risks.</p>
 
         <div class="quote-line">
           "Security only works when it's embedded, automated, and aligned with how engineers actually build systems."
         </div>
 
-        <p>What I enjoy most is <strong>simplifying complex security problems</strong>. Whether it's building runbooks or training engineers, I aim to make secure practices easy to follow and hard to ignore.</p>
+        <p>What I enjoy most is <strong>simplifying complex security problems</strong>. Whether it's building runbooks or designing secure-by-default systems, I aim to make secure practices easy to follow and hard to ignore.</p>
 
         <p>Outside of work, I'm pursuing a <strong>Master's in Cybersecurity at NYU</strong> and running hands-on SOC and forensics labs, experimenting with SIEM tools, vulnerability research, and security automation.</p>
 
@@ -1509,10 +1512,16 @@
           </div>
           <div class="timeline">
             <div class="tl-item">
-              <div class="tl-date">2020 — Present</div>
+              <div class="tl-date">Nov 2023 — Present</div>
               <div class="tl-role">Software Engineer III</div>
               <div class="tl-company">Walmart Global Tech</div>
-              <div class="tl-desc">Cloud security, Kubernetes platform hardening, IAM automation, vulnerability management, incident response collaboration, security enablement across Azure & GCP.</div>
+              <div class="tl-desc">Cloud security, Kubernetes platform hardening, IAM automation, vulnerability management, security enablement across Azure & GCP. Promoted for leadership and impact.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">2022 — Nov 2023</div>
+              <div class="tl-role">Software Engineer II</div>
+              <div class="tl-company">Walmart Global Tech</div>
+              <div class="tl-desc">Incident response support, automated response workflows, playbook authoring, and MTTR improvement initiatives across cloud security operations.</div>
             </div>
             <div class="tl-item">
               <div class="tl-date">In Progress</div>
@@ -1531,14 +1540,14 @@
             <div class="sidebar-dot"></div>
             <div>
               <span class="sidebar-item-label">Role Target</span>
-              <span class="sidebar-item-val">Senior Cloud Security Engineer / DevSecOps Engineer</span>
+              <span class="sidebar-item-val">Senior Cloud Security Engineer / DevSecOps Engineer / SOC Engineer</span>
             </div>
           </div>
           <div class="sidebar-item">
             <div class="sidebar-dot"></div>
             <div>
               <span class="sidebar-item-label">Domain</span>
-              <span class="sidebar-item-val">Enterprise cloud security, platform security, security engineering</span>
+              <span class="sidebar-item-val">Enterprise Cloud Security, Platform Security, Security Engineering, Incident Response</span>
             </div>
           </div>
           <div class="sidebar-item">
@@ -1553,17 +1562,24 @@
         <div class="sidebar-card">
           <div class="sidebar-card-title">Platform Expertise</div>
           <div class="sidebar-item">
-            <div class="sidebar-dot" style="background:var(--accent);"></div>
+            <div class="sidebar-dot"></div>
             <div>
               <span class="sidebar-item-label">Azure</span>
               <span class="sidebar-item-val">AKS, Azure AD, Key Vault, Cloud Defender</span>
             </div>
           </div>
           <div class="sidebar-item">
-            <div class="sidebar-dot" style="background:var(--accent3);"></div>
+            <div class="sidebar-dot"></div>
             <div>
               <span class="sidebar-item-label">GCP</span>
               <span class="sidebar-item-val">GKE, Cloud IAM, Secret Manager, Security Command Center</span>
+            </div>
+          </div>
+          <div class="sidebar-item">
+            <div class="sidebar-dot"></div>
+            <div>
+              <span class="sidebar-item-label">AWS</span>
+              <span class="sidebar-item-val">IAM, CloudTrail, CloudWatch, GuardDuty, KMS, Security Hub, Inspector</span>
             </div>
           </div>
           <div class="sidebar-item">
@@ -1591,7 +1607,7 @@
           </div>
           <div class="sidebar-item">
             <div class="sidebar-dot"></div>
-            <div><span class="sidebar-item-val">Multi-cloud (Azure + GCP) with Kubernetes specialization</span></div>
+            <div><span class="sidebar-item-val">Multi-cloud (Azure + GCP + AWS) with Kubernetes specialization</span></div>
           </div>
         </div>
 
