@@ -1713,15 +1713,18 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Restore page from URL hash on load
-  (function() {
+  // Restore page from URL hash on load or back/forward navigation
+  function restoreFromHash() {
     const hash = window.location.hash.replace('#', '');
     const valid = ['home', 'work', 'about', 'contact'];
-    if (hash && valid.includes(hash)) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById('page-' + hash).classList.add('active');
-    }
-  })();
+    const page = (hash && valid.includes(hash)) ? hash : 'home';
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  restoreFromHash();
+  window.addEventListener('hashchange', restoreFromHash);
 
   // Case study accordion
   function toggleCase(id) {
