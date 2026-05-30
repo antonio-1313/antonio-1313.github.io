@@ -810,6 +810,7 @@
   <ul class="nav-links">
     <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
     <li><a href="#" onclick="showPage('work'); return false;">Projects</a></li>
+    <li><a href="#" onclick="showWriting(); return false;">Writing</a></li>
     <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
     <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
   </ul>
@@ -985,6 +986,28 @@
     </div>
     <div style="margin-top:40px; text-align:center;">
       <a class="btn-primary" href="#" onclick="showPage('work'); return false;">Explore Projects →</a>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section id="writing" style="padding: 60px 40px; max-width: 1200px; margin: 0 auto;">
+    <div class="section-header">
+      <span class="section-tag">Writing</span>
+      <div class="section-line"></div>
+      <span class="section-num">03</span>
+    </div>
+    <a href="https://dev.to/antonio-1313/building-a-cloud-siem-from-scratch-with-aws-lambda-and-eventbridge-59id" target="_blank" style="text-decoration:none; display:block;">
+      <div style="background:var(--panel); border:1px solid var(--border); padding:32px 36px; display:flex; justify-content:space-between; align-items:flex-start; gap:24px; transition:border-color 0.25s;" onmouseover="this.style.borderColor='rgba(0,212,255,0.4)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div>
+          <div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;">AWS · SIEM · Detection Engineering</div>
+          <div style="font-family:var(--font-display); font-size:20px; font-weight:700; color:var(--text); margin-bottom:10px;">Building a Cloud SIEM from Scratch with AWS Lambda and EventBridge</div>
+          <div style="font-size:13px; color:var(--muted); line-height:1.7;">A hands-on walkthrough of building a functional cloud SIEM pipeline using AWS-native tooling — Lambda, EventBridge, and more.</div>
+        </div>
+        <div style="color:var(--accent); font-size:20px; flex-shrink:0; margin-top:4px;">→</div>
+      </div>
+    </a>
+    <div style="margin-top:16px; text-align:right;">
+      <a href="https://dev.to/antonio-1313" target="_blank" style="font-size:12px; color:var(--muted); text-decoration:none; letter-spacing:0.08em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">More on dev.to →</a>
     </div>
   </section>
 
@@ -1733,6 +1756,11 @@
 
   restoreFromHash();
   window.addEventListener('hashchange', restoreFromHash);
+
+  function showWriting() {
+    showPage('home');
+    setTimeout(() => document.getElementById('writing').scrollIntoView({ behavior: 'smooth' }), 50);
+  }
 
   // Case study accordion
   function toggleCase(id) {
